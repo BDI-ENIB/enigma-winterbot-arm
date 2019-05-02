@@ -32,5 +32,9 @@ void setup()
 
 void loop()
 {
-	
+	static bool led_state = FALSE;
+	led_state = !led_state;
+	digitalWrite(DEBUG_LED, led_state);
+
+	listenSerial();
 }
