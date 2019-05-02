@@ -1,5 +1,8 @@
 #include "serial-commands.h"
 
+namespace enigma {
+namespace serial {
+
 void listenSerial() {
 	if (Serial.available() > 0) {
 		// read the incoming byte:
@@ -11,3 +14,6 @@ void listenSerial() {
 			Serial.println("ArmBoard;");
 	}
 }
+
+} // namespace pinout
+} // namespace serial

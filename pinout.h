@@ -1,6 +1,8 @@
 #ifndef PINOUT_H
 #define PINOUT_H 1
 
+#include <Arduino.h>
+
 #define DEBUG_LED 13
 
 #define MOTOR_CH_A 0
@@ -25,5 +27,14 @@
 
 #define END_STOP_T 14  // translation
 #define END_STOP_R 15  // rotation
+
+
+namespace enigma {
+namespace pinout {
+
+void setPinModes();
+
+} // namespace pinout
+} // namespace enigma
 
 #endif
