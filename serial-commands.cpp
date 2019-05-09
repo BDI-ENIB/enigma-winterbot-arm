@@ -1,6 +1,5 @@
 #include "serial-commands.h"
 
-namespace enigma {
 namespace serial {
 
 void listenSerial() {
@@ -16,4 +15,3 @@ void listenSerial() {
 }
 
 } // namespace pinout
-} // namespace serial

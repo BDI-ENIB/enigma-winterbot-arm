@@ -5,7 +5,7 @@ void setup()
 {
 	Serial.begin(9600);
 	
-	enigma::pinout::setPinModes();
+	pinout::setPinModes();
 }
 
 void loop()
@@ -14,5 +14,5 @@ void loop()
 	led_state = !led_state;
 	digitalWrite(DEBUG_LED, led_state);
 
-	enigma::serial::listenSerial();
+	serial::listenSerial();
 }

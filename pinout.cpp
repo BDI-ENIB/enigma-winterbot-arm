@@ -1,6 +1,5 @@
 #include "pinout.h"
 
-namespace enigma {
 namespace pinout {
 
 void setPinModes() {
@@ -38,4 +37,3 @@ void setPinModes() {
 }
 
 } // namespace pinout
-} // namespace enigma

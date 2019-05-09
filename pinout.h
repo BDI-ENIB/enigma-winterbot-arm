@@ -36,12 +36,10 @@
 #define TX_24V 16
 
 
-namespace enigma {
 namespace pinout {
 
 void setPinModes();
 
 } // namespace pinout
-} // namespace enigma
 
 #endif
