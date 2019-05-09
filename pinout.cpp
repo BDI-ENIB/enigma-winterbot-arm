@@ -26,8 +26,15 @@ void setPinModes() {
 	pinMode(STEPPER_STEP, OUTPUT);
 	pinMode(STEPPER_DIR, OUTPUT);
 
-	pinMode(END_STOP_T, INPUT);
-	pinMode(END_STOP_R, INPUT);
+	pinMode(POS_ZERO, INPUT);
+	pinMode(POS_HIGH, INPUT);
+
+	pinMode(RX_12V1, INPUT);
+	pinMode(TX_12V1, OUTPUT);
+	pinMode(RX_12V2, INPUT);
+	pinMode(TX_12V2, OUTPUT);
+	pinMode(RX_24V, INPUT);
+	pinMode(TX_24V, OUTPUT);
 }
 
 } // namespace pinout
