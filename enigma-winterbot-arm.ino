@@ -1,5 +1,5 @@
-#include "pinout.h"
-#include "serial-commands.h"
+#include "src/pinout.h"
+#include "src/serial-commands.h"
 
 void setup()
 {
