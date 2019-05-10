@@ -6,7 +6,8 @@
  *
  * This file may be redistributed under the terms of the MIT license.
  */
-#include "DRV8825.h"
+#include "DRV8825.hpp"
+#include <Arduino.h>
 
 /*
  * Microstepping resolution truth table (Page 13 of DRV8825 pdf)

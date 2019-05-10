@@ -1,4 +1,5 @@
-#include "pinout.h"
+#include "pinout.hpp"
+#include "Arduino.h"
 
 namespace pinout {
 

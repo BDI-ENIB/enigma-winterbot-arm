@@ -8,8 +8,7 @@
  */
 #ifndef A4988_H
 #define A4988_H
-#include <Arduino.h>
-#include "BasicStepperDriver.h"
+#include "BasicStepperDriver.hpp"
 
 class A4988 : public BasicStepperDriver {
 protected:

@@ -24,6 +24,8 @@ namespace height {
 
 	const int PALET_BACK = 0;
 	const int PALET_FRONT = 0;
+	const int RAMPE = 0;
+	const int BALANCE = 0;
 	const int GOLDENIUM = 0;
 
 	const int STORE_0 = 0; // height of store places

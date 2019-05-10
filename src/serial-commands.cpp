@@ -1,4 +1,5 @@
-#include "serial-commands.h"
+#include "serial-commands.hpp"
+#include "Arduino.h"
 
 namespace serial {
 

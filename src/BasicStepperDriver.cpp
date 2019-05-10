@@ -10,7 +10,7 @@
  * - Generating stepper-motor speed profiles in real time - David Austin, 2004
  * - Atmel AVR446: Linear speed control of stepper motor, 2006
  */
-#include "BasicStepperDriver.h"
+#include "BasicStepperDriver.hpp"
 
 /*
  * Basic connection: only DIR, STEP are connected.

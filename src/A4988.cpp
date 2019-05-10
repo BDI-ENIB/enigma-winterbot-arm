@@ -6,7 +6,8 @@
  *
  * This file may be redistributed under the terms of the MIT license.
  */
-#include "A4988.h"
+#include "A4988.hpp"
+#include <Arduino.h>
 
 /*
  * Microstepping resolution truth table (Page 6 of A4988 pdf)

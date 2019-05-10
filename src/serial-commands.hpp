@@ -1,7 +1,7 @@
 #ifndef SERIAL_COMMANDS_H
 #define SERIAL_COMMANDS_H 1
 
-#include "pinout.h"
+#include "pinout.hpp"
 
 namespace serial {
 
