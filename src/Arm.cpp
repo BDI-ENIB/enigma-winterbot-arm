@@ -1,6 +1,8 @@
 #include "Arm.hpp"
 #include <Arduino.h>
 
+// public methods
+
 Arm::Arm(DRV8825 *height, Motor *pan, Encoder *pan_coder, PID *pan_pid, Servo *tilt, Motor *pump):
 	height{height},
 	pan{pan}, pan_coder{pan_coder}, pan_pid{pan_pid},
@@ -9,7 +11,7 @@ Arm::Arm(DRV8825 *height, Motor *pan, Encoder *pan_coder, PID *pan_pid, Servo *t
 {}
 
 void Arm::init() {
-	tilt->move(position::tilt::HORIZONTAL);
+	tilt->write(position::tilt::HORIZONTAL);
 
 	height->begin();
 	height->enable();
@@ -94,17 +96,12 @@ int Arm::pickFromStorage(int storN) {
 void Arm::update() {
 	updateCurrentPos();
 
-	// TODO: logic
+	pan_pid; //TODO
+	pan; //TODO
+
+	tilt; //TODO
 
 	execActionIfOK();
-}
-
-void Arm::updateCurrentPos() {
-	lastPan = currentPan;
-	lastHeight = currentHeight;
-
-	currentPan = pan_coder->read();
-	currentHeight; //TODO
 }
 
 bool Arm::moveEnded() {
@@ -118,8 +115,51 @@ bool Arm::moveEnded() {
 	return tiltOK && panOK && heightOK;
 }
 
+void Arm::log(bool machineFriendly) {
+	if (machineFriendly) {
+		Serial.print("LOG");
+		Serial.print(targetPan);
+		Serial.print(",");
+		Serial.print(targetTilt);
+		Serial.print(",");
+		Serial.print(targetHeight);
+		Serial.print(",");
+		Serial.print(int(moveEnded()));
+		Serial.print(",");
+		Serial.print(int(pumpOn));
+		Serial.println(";");
+	} else {
+		Serial.print("Move to (p, t, h) :");
+		Serial.print(targetPan);
+		Serial.print(", ");
+		Serial.print(targetTilt);
+		Serial.print(", ");
+		Serial.println(targetHeight);
+		if (moveEnded()) {
+			Serial.println("Arrived");
+		} else {
+			Serial.println("In progress");
+		}
+		if (pumpOn) {
+			Serial.println("Pump is on");
+		} else {
+			Serial.println("Pump is off or releasing");
+		}
+	}
+}
+
+// private methods
+
+void Arm::updateCurrentPos() {
+	lastPan = currentPan;
+	lastHeight = currentHeight;
+
+	currentPan = pan_coder->read();
+	currentHeight; //TODO
+}
+
 void Arm::execActionIfOK() {
-	switch (scheduledAction):
+	switch (scheduledAction)
 	{
 	case 1:
 		scheduledAction = 0;

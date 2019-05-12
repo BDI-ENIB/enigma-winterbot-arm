@@ -17,6 +17,8 @@ Motor *pump = new Motor(PUMP_PWM, PUMP_BRAKE, PUMP_DIR);
 
 Arm arm(height, pan, pan_coder, pan_pid, tilt, pump);
 
+const bool machineFriendly = false; //log format
+
 void setup()
 {
 	Serial.begin(250000);
@@ -39,5 +41,10 @@ void loop()
 
 	serial::listenSerial();
 
-	arm.log();
+	arm.log(machineFriendly);
+}
+
+void mainLoop()
+{
+	arm.update();
 }

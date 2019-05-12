@@ -4,7 +4,8 @@
 #include "DRV8825.hpp"
 #include "Motor.hpp"
 #include "PID.hpp"
-#include "positions.hpp"
+#include "position.hpp"
+#include "pinout.hpp"
 #include <Servo.h>
 #include <Encoder.h>
 
@@ -16,6 +17,8 @@ class Arm
 {
 public:
 	Arm(DRV8825 *height, Motor *pan, Encoder *pan_coder, PID *pan_pid, Servo *tilt, Motor *pump);
+
+	void init();
 
 	void grab();
 	void drop();
@@ -34,7 +37,7 @@ public:
 
 	bool moveEnded();
 
-	void log();
+	void log(bool machineFriendly);
 private:
 	void updateCurrentPos();
 	void execActionIfOK();
@@ -44,8 +47,8 @@ private:
 	int currentPan = 0, currentHeight = 0; // no currentTilt as it has no feedback
 	unsigned long tilt_arrived = 0; // time at which the tilt servo will arrive, estimation
 
-	const int storagesPan[2] = {positions::pan::STORE_1, positions::pan::STORE_2};
-	const int storagesHeight[4] = {positions::height::STORE_0, positions::height::STORE_1, positions::height::STORE_2, positions::height::STORE_3};
+	const int storagesPan[2] = {position::pan::STORE_1, position::pan::STORE_2};
+	const int storagesHeight[4] = {position::height::STORE_0, position::height::STORE_1, position::height::STORE_2, position::height::STORE_3};
 	int storageCount[2] = {0, 0};
 
 	bool pumpOn = false;
