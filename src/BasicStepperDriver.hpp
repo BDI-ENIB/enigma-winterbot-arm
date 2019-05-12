@@ -34,14 +34,14 @@ public:
 	struct Profile {
 		Mode mode = CONSTANT_SPEED;
 		short accel = 1000;     // acceleration [steps/s^2]
-		short decel = 1000;     // deceleration [steps/s^2]    
+		short decel = 1000;     // deceleration [steps/s^2]
 	};
-	static inline void delayMicros(unsigned long delay_us, unsigned long start_us = 0){
-		if (delay_us){
-			if (!start_us){
+	static inline void delayMicros(unsigned long delay_us, unsigned long start_us = 0) {
+		if (delay_us) {
+			if (!start_us) {
 				start_us = micros();
 			}
-			if (delay_us > MIN_YIELD_MICROS){
+			if (delay_us > MIN_YIELD_MICROS) {
 				yield();
 			}
 			// See https://www.gammon.com.au/millis
@@ -114,41 +114,41 @@ public:
 	/*
 	 * Initialize pins, calculate timings etc
 	 */
-	void begin(float rpm=60, short microsteps=1);
+	void begin(float rpm = 60, short microsteps = 1);
 	/*
 	 * Set current microstep level, 1=full speed, 32=fine microstepping
 	 * Returns new level or previous level if value out of range
 	 */
 	virtual short setMicrostep(short microsteps);
-	short getMicrostep(void){
+	short getMicrostep(void) {
 		return microsteps;
 	}
-	short getSteps(void){
+	short getSteps(void) {
 		return motor_steps;
 	}
 	/*
 	 * Set target motor RPM (1-200 is a reasonable range)
 	 */
 	void setRPM(float rpm);
-	float getRPM(void){
+	float getRPM(void) {
 		return rpm;
 	};
-	float getCurrentRPM(void){
-		return (60.0*1000000L / step_pulse / microsteps / motor_steps);
+	float getCurrentRPM(void) {
+		return (60.0 * 1000000L / step_pulse / microsteps / motor_steps);
 	}
 	/*
 	 * Set speed profile - CONSTANT_SPEED, LINEAR_SPEED (accelerated)
 	 * accel and decel are given in [full steps/s^2]
 	 */
-	void setSpeedProfile(Mode mode, short accel=1000, short decel=1000);
+	void setSpeedProfile(Mode mode, short accel = 1000, short decel = 1000);
 	void setSpeedProfile(struct Profile profile);
-	struct Profile getSpeedProfile(void){
+	struct Profile getSpeedProfile(void) {
 		return profile;
 	}
-	short getAcceleration(void){
+	short getAcceleration(void) {
 		return profile.accel;
 	}
-	short getDeceleration(void){
+	short getDeceleration(void) {
 		return profile.decel;
 	}
 	/*
@@ -160,7 +160,7 @@ public:
 	 * Rotate the motor a given number of degrees (1-360)
 	 */
 	void rotate(long deg);
-	inline void rotate(int deg){
+	inline void rotate(int deg) {
 		rotate((long)deg);
 	};
 	/*
@@ -189,8 +189,8 @@ public:
 	 * If time (microseconds) is given, the driver will attempt to execute the move in exactly that time
 	 * by altering rpm for this move only (up to preset rpm).
 	 */
-	void startMove(long steps, long time=0);
-	inline void startRotate(int deg){
+	void startMove(long steps, long time = 0);
+	inline void startRotate(int deg) {
 		startRotate((long)deg);
 	};
 	void startRotate(long deg);
@@ -217,20 +217,20 @@ public:
 	 * Get the number of completed steps so far.
 	 * This is always a positive number
 	 */
-	long getStepsCompleted(void){
+	long getStepsCompleted(void) {
 		return step_count;
 	}
 	/*
 	 * Get the number of steps remaining to complete the move
 	 * This is always a positive number
 	 */
-	long getStepsRemaining(void){
+	long getStepsRemaining(void) {
 		return steps_remaining;
 	}
 	/*
 	 * Get movement direction: forward +1, back -1
 	 */
-	int getDirection(void){
+	int getDirection(void) {
 		return (dir_state == HIGH) ? 1 : -1;
 	}
 	/*
@@ -240,10 +240,10 @@ public:
 	/*
 	 * Calculate steps needed to rotate requested angle, given in degrees
 	 */
-	long calcStepsForRotation(long deg){
+	long calcStepsForRotation(long deg) {
 		return deg * motor_steps * (long)microsteps / 360;
 	}
-	long calcStepsForRotation(double deg){
+	long calcStepsForRotation(double deg) {
 		return deg * motor_steps * microsteps / 360;
 	}
 };

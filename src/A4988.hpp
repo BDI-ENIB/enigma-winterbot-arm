@@ -42,8 +42,8 @@ public:
 	 */
 	A4988(short steps, short dir_pin, short step_pin);
 	A4988(short steps, short dir_pin, short step_pin, short enable_pin);
-	
-	void begin(short rpm=60, short microsteps=1);
+
+	void begin(short rpm = 60, short microsteps = 1);
 	/*
 	 * Fully wired. All the necessary control pins for A4988 are connected.
 	 */
