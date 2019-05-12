@@ -3,14 +3,14 @@
 
 namespace positions {
 
-namespace angle { // servo angles 
+namespace tilt {
 	const int HORIZONTAL  = 0;
 	const int VERTICAL    = 0;
 	const int ANGLED_BACK = 0;
 	const int STORAGE     = 0;
 }
 
-namespace rotation { // arm rotation
+namespace pan {
 	const int FRONT = 0;
 	const int RIGHT = 0;
 	const int LEFT  = 0;

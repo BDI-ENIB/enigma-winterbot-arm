@@ -36,14 +36,14 @@ DRV8825::DRV8825(short steps, short dir_pin, short step_pin, short enable_pin, s
 
 const uint8_t* DRV8825::getMicrostepTable()
 {
-    return (uint8_t*)DRV8825::MS_TABLE;
+	return (uint8_t*)DRV8825::MS_TABLE;
 }
 
 size_t DRV8825::getMicrostepTableSize()
 {
-    return sizeof(DRV8825::MS_TABLE);
+	return sizeof(DRV8825::MS_TABLE);
 }
 
 short DRV8825::getMaxMicrostep(){
-    return DRV8825::MAX_MICROSTEP;
+	return DRV8825::MAX_MICROSTEP;
 }
