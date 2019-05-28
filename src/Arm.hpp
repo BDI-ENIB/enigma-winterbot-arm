@@ -6,16 +6,30 @@
 #include "PID.hpp"
 #include "position.hpp"
 #include "pinout.hpp"
+#include <vector>
 #include <Servo.h>
 #include <Encoder.h>
 
 #define PAN_INTERVAL 20
-#define HEIGHT_INTERVAL 2
+
+class Target {
+public:
+	Target(int, int, int);
+	const int pan, tilt, height;
+};
 
 
 class Arm
 {
 public:
+	enum Action {
+		NOTHING = 0,
+		DROP_BEGIN,
+		PICK_BEGIN,
+		DROP_END,
+		PICK_END
+	};
+
 	Arm(DRV8825 *height, Motor *pan, Encoder *pan_coder, PID *pan_pid, Servo *tilt, Motor *pump);
 
 	void init();
@@ -23,8 +37,10 @@ public:
 	void grab();
 	void drop();
 
-	void setTarget(int pan, int tilt, int height);
-	void setTarget(int pan, int tilt, int height, int action);
+	void addTarget(Target target);
+	void addTarget(Target target, Action action);
+	void addTarget(int pan, int tilt, int height);
+	void addTarget(int pan, int tilt, int height, Action action);
 
 	/**
 	 * Schedules a storage action to do and updates counts
@@ -39,13 +55,15 @@ public:
 
 	void log(bool machineFriendly);
 private:
-	void updateCurrentPos();
 	void execActionIfOK();
 
 	int targetPan = 0, targetTilt = 0, targetHeight = 0;
 	int lastPan = 0, lastHeight = 0;
-	int currentPan = 0, currentHeight = 0; // no currentTilt as it has no feedback
+	int currentPan = 0, currentHeight = 0; // no currentTilt as it has no feedback, currentHeight saves position only when arrived
 	unsigned long tilt_arrived = 0; // time at which the tilt servo will arrive, estimation
+
+	std::vector<Target> targets;
+	int currentTarget = -1;
 
 	const int storagesPan[2] = {position::pan::STORE_1, position::pan::STORE_2};
 	const int storagesHeight[4] = {position::height::STORE_0, position::height::STORE_1, position::height::STORE_2, position::height::STORE_3};

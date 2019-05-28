@@ -28,13 +28,19 @@ void setup()
 
 	tilt->attach(SERVO_1);
 
-	// On lance l'asservissement
-	controlTimer.begin(mainLoop, 4166);
-	controlTimer.priority(129);
 }
 
 void loop()
 {
+	static bool first = true;
+
+	if (first) {
+		arm.init();
+		// On lance l'asservissement
+		controlTimer.begin(mainLoop, 4166);
+		controlTimer.priority(129);
+	}
+
 	static bool led_state = LOW;
 	led_state = !led_state;
 	digitalWrite(DEBUG_LED, led_state);
@@ -42,6 +48,10 @@ void loop()
 	serial::listenSerial();
 
 	arm.log(machineFriendly);
+
+	delay(500);
+
+	first = false;
 }
 
 void mainLoop()

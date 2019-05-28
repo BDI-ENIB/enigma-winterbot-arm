@@ -20,13 +20,13 @@ const int STORAGE     = 0; // for arm storage, not for pallet storage access
 
 namespace height {
 const int BOTTOM = 0;
-const int TOP = 0;
+const int TOP    = 0;
 
-const int PALET_BACK = 0;
+const int PALET_BACK  = 0;
 const int PALET_FRONT = 0;
-const int RAMPE = 0;
-const int BALANCE = 0;
-const int GOLDENIUM = 0;
+const int RAMPE       = 0;
+const int BALANCE     = 0;
+const int GOLDENIUM   = 0;
 
 const int STORE_0 = 0; // height of store places
 const int STORE_1 = 0;
