@@ -3,18 +3,6 @@
 
 #define MAX_PWM 256
 
-
-Target::Target(int pan, int tilt, int height):
-	pan{pan},
-	tilt{tilt},
-	height{height}
-{
-	pan = max(position::pan::STORE_1, min(pan, position::pan::STORE_2));
-	tilt = max(position::tilt::STORAGE, min(tilt, position::tilt::ANGLED_BACK));
-	height = max(position::height::BOTTOM, min(height, position::height::TOP));
-}
-
-
 Arm::Arm(DRV8825 *height, Motor *pan, Encoder *pan_coder, PID *pan_pid, Servo *tilt, Motor *pump):
 	height{height},
 	pan{pan}, pan_coder{pan_coder}, pan_pid{pan_pid},
@@ -45,19 +33,6 @@ void Arm::drop() {
 	pumpOn = false;
 }
 
-void Arm::addTarget(Target target)
-{
-	targets.emplace_back(target);
-
-	void *NOT_IMPLEMENTED;
-}
-
-void Arm::addTarget(Target target, Action action)
-{
-	addTarget(target);
-	scheduledAction =  action;
-	execActionIfOK();
-}
 
 void Arm::addTarget(const int told_pan, const int told_tilt, const int told_height) {
 	targetPan = max(position::pan::STORE_1, min(told_pan, position::pan::STORE_2));

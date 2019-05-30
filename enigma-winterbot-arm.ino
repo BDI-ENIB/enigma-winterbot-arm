@@ -39,6 +39,7 @@ void loop()
 		// On lance l'asservissement
 		controlTimer.begin(mainLoop, 4166);
 		controlTimer.priority(129);
+		first = false;
 	}
 
 	static bool led_state = LOW;
@@ -50,8 +51,6 @@ void loop()
 	arm.log(machineFriendly);
 
 	delay(500);
-
-	first = false;
 }
 
 void mainLoop()

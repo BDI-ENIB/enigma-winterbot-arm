@@ -12,13 +12,6 @@
 
 #define PAN_INTERVAL 20
 
-class Target {
-public:
-	Target(int, int, int);
-	const int pan, tilt, height;
-};
-
-
 class Arm
 {
 public:
@@ -37,8 +30,6 @@ public:
 	void grab();
 	void drop();
 
-	void addTarget(Target target);
-	void addTarget(Target target, Action action);
 	void addTarget(int pan, int tilt, int height);
 	void addTarget(int pan, int tilt, int height, Action action);
 
@@ -61,9 +52,6 @@ private:
 	int lastPan = 0, lastHeight = 0;
 	int currentPan = 0, currentHeight = 0; // no currentTilt as it has no feedback, currentHeight saves position only when arrived
 	unsigned long tilt_arrived = 0; // time at which the tilt servo will arrive, estimation
-
-	std::vector<Target> targets;
-	int currentTarget = -1;
 
 	const int storagesPan[2] = {position::pan::STORE_1, position::pan::STORE_2};
 	const int storagesHeight[4] = {position::height::STORE_0, position::height::STORE_1, position::height::STORE_2, position::height::STORE_3};
