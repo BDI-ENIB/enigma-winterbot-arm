@@ -46,7 +46,7 @@ void loop()
 	led_state = !led_state;
 	digitalWrite(DEBUG_LED, led_state);
 
-	serial::listenSerial();
+	serial::listenSerial(arm);
 
 	arm.log(machineFriendly);
 

@@ -3,6 +3,7 @@
 
 #define MAX_PWM 256
 
+
 Arm::Arm(DRV8825 *height, Motor *pan, Encoder *pan_coder, PID *pan_pid, Servo *tilt, Motor *pump):
 	height{height},
 	pan{pan}, pan_coder{pan_coder}, pan_pid{pan_pid},

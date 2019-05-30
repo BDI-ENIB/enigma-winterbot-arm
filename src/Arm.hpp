@@ -6,11 +6,11 @@
 #include "PID.hpp"
 #include "position.hpp"
 #include "pinout.hpp"
-#include <vector>
 #include <Servo.h>
 #include <Encoder.h>
 
 #define PAN_INTERVAL 20
+
 
 class Arm
 {

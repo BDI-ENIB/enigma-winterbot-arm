@@ -3,7 +3,7 @@
 
 namespace serial {
 
-void listenSerial() {
+void listenSerial(Arm arm) {
 	if (Serial.available() > 0) {
 		// read the incoming byte:
 		String message = Serial.readStringUntil(';');
@@ -11,7 +11,11 @@ void listenSerial() {
 		// test the obtained string to know the received command
 
 		if (message.equals("whois"))
-			Serial.println("ArmBoard;");
+			Serial.print("ArmBoard;");
+		else if (message.equals("isbusy")) {
+			Serial.print(int(not arm.moveEnded()));
+			Serial.print(";");
+		}
 	}
 }
 
